@@ -34,7 +34,7 @@ class DepartmentList extends Component
 
     public function mount($department = null)
     {
-        $this->department= $department;
+        $this->department = $department;
         if (is_null($this->department)) {
             $this->department = new Department();
         }
@@ -47,6 +47,7 @@ class DepartmentList extends Component
     public function query()
     {
         $query = Department::query();
+        $query = $query->with('licenses');
 
         return $query;
     }
@@ -54,15 +55,15 @@ class DepartmentList extends Component
     public function render()
     {
         $departments = $this->query();
-        if($this->pagination != 'all' or $this->pagination != '' ){
+        if ($this->pagination != 'all' or $this->pagination != '') {
             $departments = $departments->paginate($this->pagination);
-        }elseif($this->pagination == ''){
+        } elseif ($this->pagination == '') {
             $departments = $departments->paginate(10);
-        }else{
+        } else {
             $departments = $departments->get();
         }
-
-        return view('livewire.department.department-list')->extends('layouts.app')->with(compact('departments'));
+        $options = array();
+        return view('livewire.department.department-list')->extends('layouts.app')->with(compact('departments', 'options'));
     }
 
     public function showModal($title, $subText, $information)

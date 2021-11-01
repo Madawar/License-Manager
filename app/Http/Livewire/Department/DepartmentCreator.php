@@ -24,7 +24,7 @@ class DepartmentCreator extends Component
 
     public function mount($department = null)
     {
-        $this->department= $department;
+        $this->department = $department;
         if (is_null($this->department)) {
             $this->department = new Department();
         }
@@ -35,7 +35,8 @@ class DepartmentCreator extends Component
         //$this->department->save();
     }
 
-    public function saveDepartment(){
+    public function saveDepartment()
+    {
         $this->validate();
         $this->department->save();
     }

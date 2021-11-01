@@ -17,6 +17,10 @@
                                     name="search" />
                             </div>
                             <div class="flex-auto">
+                                <x-forms.select :options="$departments" label="" placeholder="Departments"
+                                    wire:model="department" name="departments" />
+                            </div>
+                            <div class="flex-auto">
                                 <x-forms.select :options="$options" label="" placeholder="Filter" wire:model="filter"
                                     name="search" />
                             </div>
@@ -59,6 +63,10 @@
                                 </th>
                                 <th scope="col"
                                     class="text-xs font-medium text-gray-700 px-6 py-3 text-left uppercase tracking-wider">
+                                    Department
+                                </th>
+                                <th scope="col"
+                                    class="text-xs font-medium text-gray-700 px-6 py-3 text-left uppercase tracking-wider">
                                     Notify
                                 </th>
 
@@ -83,6 +91,12 @@
                                     </td>
                                     <td class="text-sm text-gray-500 px-6 py-4 whitespace-nowrap">
                                         {{ $license->last_acquired }}
+                                    </td>
+                                    <td class="text-sm text-gray-500 px-6 py-4 whitespace-nowrap">
+                                        @isset($license->department)
+                                            {{ $license->department->name }}
+                                        @endisset
+
                                     </td>
                                     <td class="text-sm text-gray-500 px-6 py-4 whitespace-nowrap">
                                         {{ $license->notify }}

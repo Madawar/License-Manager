@@ -31,8 +31,9 @@ class LicenseFactory extends Factory
             'license_key' => $this->faker->lexify('id-????-xyx-???'),
             'notify' => $this->faker->email(),
             'reminder' => $this->faker->numberBetween(6, 12),
-            'license_period'=>'months',
-            'license_reminder_period'=>'months',
+            'license_period' => 'months',
+            'license_reminder_period' => 'months',
+            'department_id' => $this->faker->numberBetween(1, 5),
 
 
         ];

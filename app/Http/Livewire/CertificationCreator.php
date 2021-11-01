@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Department;
 use Livewire\Component;
 use App\Models\License;
 use Carbon\Carbon;
@@ -20,6 +21,7 @@ class CertificationCreator extends Component
 
     protected $rules = [
         'license.license_type' => '',
+        'license.department_id' => '',
         'license.license_certification' => 'required|min:5',
         'license.last_acquired' => 'required|date',
         'license.renewal' => 'required|numeric',
@@ -42,6 +44,7 @@ class CertificationCreator extends Component
             $this->license = new License();
         }
     }
+
     public function updatedLicense()
     {
     }
@@ -52,10 +55,12 @@ class CertificationCreator extends Component
 
         $this->license->save();
     }
+
     public function render()
     {
         $licenses = array('warranty' => 'Warranty', 'license' => 'License', 'certification' => 'Certification');
-        return view('livewire.certification-creator')->extends('layouts.app')->with(compact('licenses'));
+        $departments = Department::all()->pluck('name', 'id');
+        return view('livewire.certification-creator')->extends('layouts.app')->with(compact('licenses', 'departments'));
     }
 
     public function showModal($title, $subText, $information)

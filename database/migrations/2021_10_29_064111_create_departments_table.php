@@ -15,9 +15,9 @@ class CreateDepartmentsTable extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
-            $table->softDeletes();
             $table->string('name');
             $table->string('email');
+            $table->softDeletes();
             //$table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');;
             $table->timestamps();
         });

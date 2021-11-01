@@ -18,7 +18,13 @@ class Department extends Model
         'updated_at',
         'password',
     ];
-/*
+
+
+    public function licenses()
+    {
+        return $this->hasMany(License::class);
+    }
+    /*
     public function phone()
     {
         return $this->hasOne(Phone::class);

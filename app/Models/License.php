@@ -35,12 +35,12 @@ class License extends Model
             $model->offsetUnset('license_reminder_period');
         });
     }
-    /*
-    public function phone()
-    {
-        return $this->hasOne(Phone::class);
-    }
 
+    public function department()
+    {
+        return $this->hasOne(Department::class, 'id', 'department_id');
+    }
+    /*
     public function user()
     {
         return $this->belongsTo(User::class);

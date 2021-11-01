@@ -14,6 +14,10 @@
                 <x-forms.select label="License Type" placeholder="License Type" name="license.license_type"
                     :options="$licenses" wire:model="license.license_type" wire:change="$emit('datep')" />
             </div>
+            <div class="flex-auto">
+                <x-forms.select label="Department" placeholder="Department" name="license.department_id"
+                    :options="$departments" wire:model="license.department_id" />
+            </div>
         </div>
     </div>
     @if ($license->license_type != '')
