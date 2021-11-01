@@ -1,0 +1,1 @@
+       <td>{{ $model_x->header_x }}</td>

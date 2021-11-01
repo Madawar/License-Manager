@@ -1,0 +1,111 @@
+@extends('layouts.master_layout')
+
+@section('main-heading')
+<h1
+    class="p-4  text-center text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">
+    Create model_x
+</h1>
+@endsection
+@section('secondary-heading')
+<h1
+    class="p-4 text-center text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">
+    Overview </h1>
+@endsection
+
+
+@section('pre_jquery')
+<script>
+
+
+</script>
+@endsection
+
+@section('content')
+
+@if($model_v)
+    <form
+        action="{{ route('model_v.update', ['model_v' => $model_v->id]) }}"
+        method="POST" id="appx">
+        @method('PATCH')
+    @else
+        <form action="{{ route('model_v.store') }}" method="post" id="appx">
+@endif
+
+@csrf
+
+<div class="flex flex-col md:flex-row p-2 md:space-x-3 w-full">
+
+    <div class="flex-auto">
+
+
+
+    </div>
+    <div class="flex-auto">
+
+    </div>
+
+</div>
+<div class="flex flex-col md:flex-row p-2 md:space-x-3 w-full">
+
+    <div class="flex-auto">
+
+
+    </div>
+    <div class="flex-auto">
+
+
+    </div>
+
+</div>
+<div class="flex flex-col md:flex-row p-2 md:space-x-3 w-full">
+
+
+
+    <div class="flex-auto">
+
+
+    </div>
+
+</div>
+
+<div class="flex flex-col md:flex-row p-2 md:space-x-3 w-full">
+    <div class="flex-auto">
+
+
+    </div>
+</div>
+<!-- Move this to Layout -->
+form_x
+<div class="flex-col p-2 w-full">
+    <div class="grid justify-items-stretch">
+        <button class="btn btn-primary">Save model_x</button>
+    </div>
+</div>
+</form>
+@endsection
+
+@section('secondary-content')
+
+
+@endsection
+@section('jquery')
+<script>
+    var app2 = new Vue({
+        el: '#appx',
+        mounted() {
+
+        },
+        data: {
+
+        },
+        methods: {
+
+        },
+        watch: {
+
+
+        }
+    })
+
+</script>
+@endsection

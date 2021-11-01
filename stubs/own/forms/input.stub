@@ -1,0 +1,2 @@
+  <x-forms.input label="label_x" placeholder="placeholder_x" name="name_x" wire:model="name_x" model="{!! $model_x ?? null !!}" />
+  <x-forms.input label="label_x" placeholder="placeholder_x" name="name_x" wire:model="name_x"  />

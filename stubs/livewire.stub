@@ -1,0 +1,53 @@
+<?php
+
+namespace [namespace];
+
+use Livewire\Component;
+use App\Models\Model;
+use Livewire\WithFileUploads;
+
+class [class] extends Component
+{
+    public $model;
+    public $modalShow;
+    public $message = null;
+
+    use WithFileUploads;
+
+    /**Search Traits */
+
+
+    protected $rules = [
+        'model.field' => '',
+    ];
+
+    public function mount($model)
+    {
+        $this->model= $model;
+        if (is_null($this->model)) {
+            $this->model = new Model();
+        }
+    }
+    public function updatedModel()
+    {
+        $this->validate();
+        $this->model->save();
+    }
+    public function render()
+    {
+        return view('[view]')->extends('layouts.app')->with(compact('incident', 'findings'));
+    }
+
+    public function showModal($title, $subText, $information)
+    {
+        $this->message['title'] = $title;
+        $this->message['subtext'] = $subText;
+        $this->message['information'] = $information;
+        $this->modalShow = true;
+    }
+
+    public function closeModal()
+    {
+        $this->modalShow = false;
+    }
+}

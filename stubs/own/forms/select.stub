@@ -1,0 +1,2 @@
+ <x-forms.select label="label_x" placeholder="placeholder_x" name="name_x" :options="$model_x" model="{!! $model_x ?? null !!}"/>
+ <x-forms.select label="label_x" placeholder="placeholder_x" name="name_x" :options="$model_x" />

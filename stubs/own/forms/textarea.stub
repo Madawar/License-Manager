@@ -1,0 +1,2 @@
+  <x-forms.textarea label="label_x" placeholder="placeholder_x" name="name_x" model="{!! $model_x ?? null !!}"   />
+  <x-forms.textarea label="label_x" placeholder="placeholder_x" name="name_x"    />
