@@ -8,6 +8,7 @@ use App\Models\License;
 use Carbon\Carbon;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 
 class LicenseList extends Component
 {
