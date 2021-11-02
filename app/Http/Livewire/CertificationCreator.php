@@ -39,7 +39,7 @@ class CertificationCreator extends Component
 
     public function mount($license = null)
     {
-        $this->license = $license;
+        $this->license = License::find($license);
         if (is_null($this->license)) {
             $this->license = new License();
         }

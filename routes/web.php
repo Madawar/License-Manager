@@ -25,6 +25,7 @@ Route::get('/', function () {
     return view('create_license')->with(compact('licenses'));
 })->name('dashboard')->middleware('auth');
 Route::get('license/create', CertificationCreator::class)->name('license.create')->middleware('auth');
+Route::get('license/{license}/edit', CertificationCreator::class)->name('license.edit')->middleware('auth');
 Route::get('department/create', DepartmentCreator::class)->name('department.create')->middleware('auth');
 Route::get('license', LicenseList::class)->name('license.index')->middleware('auth');
 Route::get('department', DepartmentList::class)->name('department.index')->middleware('auth');

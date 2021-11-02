@@ -40,6 +40,10 @@ class License extends Model
     {
         return $this->hasOne(Department::class, 'id', 'department_id');
     }
+    public function log()
+    {
+        return $this->hasOne(EmailLog::class, 'license_id', 'id');
+    }
     /*
     public function user()
     {
