@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\CertificationCreator;
+use App\Http\Livewire\CertificationShow;
 use App\Http\Livewire\Department\DepartmentCreator;
 use App\Http\Livewire\Department\DepartmentList;
 use App\Http\Livewire\LicenseList;
@@ -26,6 +27,7 @@ Route::get('/', function () {
 })->name('dashboard')->middleware('auth');
 Route::get('license/create', CertificationCreator::class)->name('license.create')->middleware('auth');
 Route::get('license/{license}/edit', CertificationCreator::class)->name('license.edit')->middleware('auth');
+Route::get('license/{license}/show', CertificationShow::class)->name('license.show')->middleware('auth');
 Route::get('department/create', DepartmentCreator::class)->name('department.create')->middleware('auth');
 Route::get('license', LicenseList::class)->name('license.index')->middleware('auth');
 Route::get('department', DepartmentList::class)->name('department.index')->middleware('auth');

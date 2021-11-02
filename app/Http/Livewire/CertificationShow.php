@@ -8,7 +8,7 @@ use App\Models\License;
 use Carbon\Carbon;
 use Livewire\WithFileUploads;
 
-class CertificationCreator extends Component
+class CertificationShow extends Component
 {
     public $license;
     public $modalShow;
@@ -40,6 +40,7 @@ class CertificationCreator extends Component
     public function mount($license = null)
     {
         $this->license = License::find($license);
+
         if (is_null($this->license)) {
             $this->license = new License();
         }
@@ -52,15 +53,15 @@ class CertificationCreator extends Component
     public function saveLicense()
     {
         $this->validate();
+
         $this->license->save();
-        return redirect()->route('license.show', array('license' => $this->license->id));
     }
 
     public function render()
     {
         $licenses = array('warranty' => 'Warranty', 'license' => 'License', 'certification' => 'Certification');
         $departments = Department::all()->pluck('name', 'id');
-        return view('livewire.certification-creator')->extends('layouts.app')->with(compact('licenses', 'departments'));
+        return view('livewire.certification-show')->extends('layouts.app')->with(compact('licenses', 'departments'));
     }
 
     public function showModal($title, $subText, $information)

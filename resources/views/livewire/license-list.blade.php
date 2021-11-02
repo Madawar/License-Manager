@@ -103,9 +103,9 @@
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#"
-                                            class="btn btn-outline btn-sm text-blue-600 hover:text-blue-900">Update
-                                            Status</a>
+                                        <a href="{{ route('license.show', ['license' => $license->id]) }}"
+                                            class="btn btn-outline btn-sm text-blue-600 hover:text-blue-900">View
+                                            Details</a>
                                     </td>
                                 </tr>
                             @endforeach
