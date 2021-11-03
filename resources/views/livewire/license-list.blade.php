@@ -59,6 +59,10 @@
                                 </th>
                                 <th scope="col"
                                     class="text-xs font-medium text-gray-700 px-6 py-3 text-left uppercase tracking-wider">
+                                    Next Reminder
+                                </th>
+                                <th scope="col"
+                                    class="text-xs font-medium text-gray-700 px-6 py-3 text-left uppercase tracking-wider">
                                     Last Acquired
                                 </th>
                                 <th scope="col"
@@ -81,16 +85,21 @@
                                 <tr
                                     class=" border-b  {{ $license->next_renewal < Carbon\Carbon::today() ? 'bg-red-200' : 'bg-white' }}">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                        {{ $license->license_certification }}
+                                        {{ Str::ucfirst($license->license_certification) }}
                                     </td>
                                     <td class="text-sm text-gray-500 px-6 py-4 whitespace-nowrap">
                                         {{ Str::ucfirst($license->license_type) }}
                                     </td>
                                     <td class="text-sm text-gray-500 px-6 py-4 whitespace-nowrap">
-                                        {{ $license->next_renewal }}
+                                        {{ Carbon\Carbon::parse($license->next_renewal)->format('j-M-y') }}
+
                                     </td>
                                     <td class="text-sm text-gray-500 px-6 py-4 whitespace-nowrap">
-                                        {{ $license->last_acquired }}
+                                        {{ Carbon\Carbon::parse($license->next_reminder)->format('j-M-y') }}
+
+                                    </td>
+                                    <td class="text-sm text-gray-500 px-6 py-4 whitespace-nowrap">
+                                        {{ Carbon\Carbon::parse($license->last_acquired)->format('j-M-y') }}
                                     </td>
                                     <td class="text-sm text-gray-500 px-6 py-4 whitespace-nowrap">
                                         @isset($license->department)

@@ -144,6 +144,50 @@
 
     </div>
     <div class="flex flex-col md:flex-row p-2 md:space-x-1 md:space-y-0 space-y-1 w-full">
+        <div class="md:w-full flex-auto">
+            <div class="leading-loose block font-sans  font-semibold text-gray-900">Email Log :</div>
+            <div>
+                @isset($license->logs)
+
+
+                    <table class="min-w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col"
+                                    class="text-xs font-medium text-gray-700 px-6 py-3 text-left uppercase tracking-wider">
+                                    Last renewed On
+                                </th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Product 1 -->
+                            @foreach ($license->logs as $log)
+                                <tr class=" border-b ">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+
+                                        {{ Carbon\Carbon::parse($log->renewal_date)->format('j-M-y') }}
+
+
+                                    </td>
+
+
+
+                                </tr>
+                            @endforeach
+
+
+
+
+                        </tbody>
+                    </table>
+                @endisset
+            </div>
+        </div>
+
+    </div>
+    <div class="flex flex-col md:flex-row p-2 md:space-x-1 md:space-y-0 space-y-1 w-full">
         <div class=" flex-auto">
             <div class="form-control">
                 <label class="label">
@@ -152,7 +196,8 @@
                 <div class="relative">
                     <input type="text" wire:model='license.last_acquired' placeholder="Search"
                         class="w-full pr-16 input input-primary input-bordered date">
-                    <button class="absolute top-0 right-0 rounded-l-none btn btn-primary">Mark as Renewed</button>
+                    <button wire:click='renewCertificate' wire:loading.class='loading' wire:target='renewCertificate'
+                        class="absolute top-0 right-0 rounded-l-none btn btn-primary">Mark as Renewed</button>
                 </div>
             </div>
         </div>

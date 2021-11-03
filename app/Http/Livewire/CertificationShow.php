@@ -2,11 +2,14 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\CertificateLog;
 use App\Models\Department;
 use Livewire\Component;
 use App\Models\License;
 use Carbon\Carbon;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class CertificationShow extends Component
 {
@@ -64,8 +67,20 @@ class CertificationShow extends Component
         return view('livewire.certification-show')->extends('layouts.app')->with(compact('licenses', 'departments'));
     }
 
+    public function renewCertificate()
+    {
+        CertificateLog::create(array(
+            'license_id' => $this->license->id,
+            'renewal_date' => $this->license->last_acquired
+        ));
+
+        $this->saveLicense();
+        $this->showModal('License Renewal Updated', '', 'Your License Renewal Has Been Updated');
+    }
+
     public function showModal($title, $subText, $information)
     {
+
         $this->message['title'] = $title;
         $this->message['subtext'] = $subText;
         $this->message['information'] = $information;
@@ -75,5 +90,18 @@ class CertificationShow extends Component
     public function closeModal()
     {
         $this->modalShow = false;
+    }
+
+    public function download()
+    {
+        $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor(Storage::path('Template.docx'));
+        $licenses =  License::all();
+        $replacements = $licenses->toArray();
+
+        $templateProcessor->cloneBlock('block_name', 0, true, false, $replacements);
+
+        $path = 'public/' . Str::random(5) . '.docx';
+        $templateProcessor->saveAs(Storage::path($path));
+        return $path;
     }
 }

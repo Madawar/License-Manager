@@ -67,6 +67,10 @@ class License extends Model
     {
         return $this->hasOne(EmailLog::class, 'license_id', 'id');
     }
+    public function logs()
+    {
+        return $this->hasMany(CertificateLog::class, 'license_id', 'id');
+    }
     /*
     public function user()
     {

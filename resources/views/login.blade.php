@@ -12,6 +12,7 @@
                     clip-rule="evenodd" />
             </svg>
             <p class="mb-5 text-3xl uppercase text-gray-600">Login</p>
+            <p class="mb-5 text-sm uppercase text-gray-600">With Your Windows domain Password</p>
             <input type="input" name="username" class="mb-5 p-3 w-80 focus:border-purple-700 rounded border-2 outline-none"
                 autocomplete="off" placeholder="Username" required>
             <input type="password" name="password"

@@ -9,6 +9,8 @@ use Carbon\Carbon;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class LicenseList extends Component
 {
@@ -103,5 +105,23 @@ class LicenseList extends Component
     public function closeModal()
     {
         $this->modalShow = false;
+    }
+    public function download()
+    {
+        $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor(Storage::path('Template.docx'));
+        $licenses =  License::all();
+        foreach ($licenses as $license) {
+            $license->last_acquired =  Carbon::parse($license->last_acquired)->format('j-M-y');
+            $license->next_renewal =  Carbon::parse($license->next_renewal)->format('j-M-y');
+            $license->license_certification =  Str::ucfirst($license->license_certification);
+            $license->license_type =  Str::ucfirst($license->license_type);
+        }
+        $replacements = $licenses->toArray();
+
+        $templateProcessor->cloneBlock('block_name', 0, true, false, $replacements);
+
+        $path = 'public/' . Str::random(5) . '.docx';
+        $templateProcessor->saveAs(Storage::path($path));
+        return response()->download(Storage::path($path));
     }
 }

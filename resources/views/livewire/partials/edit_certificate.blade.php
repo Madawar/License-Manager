@@ -46,37 +46,39 @@
                     wire:model="license.license_period" />
             </div>
         </div>
-        <div class="flex flex-col md:flex-row p-2 md:space-x-1 md:space-y-0 space-y-1 w-full">
-            <div class="flex-auto">
+        @if ($license->license_type == 'warranty')
+            <div class="flex flex-col md:flex-row p-2 md:space-x-1 md:space-y-0 space-y-1 w-full">
+                <div class="flex-auto">
 
-                <x-forms.input label="License Key" placeholder="License Key" name="license.license_key"
-                    wire:model="license.license_key" />
+                    <x-forms.input label="License Key" placeholder="License Key" name="license.license_key"
+                        wire:model="license.license_key" />
+                </div>
             </div>
-        </div>
-        <div class="flex flex-col md:flex-row p-2 md:space-x-1 md:space-y-0 space-y-1 w-full">
-            <div class="flex-auto">
+            <div class="flex flex-col md:flex-row p-2 md:space-x-1 md:space-y-0 space-y-1 w-full">
+                <div class="flex-auto">
 
-                <x-forms.input label="Item Brand Name" placeholder="Brand Name" name="license.brandName"
-                    wire:model="license.brandName" />
-            </div>
-            <div class="flex-auto">
+                    <x-forms.input label="Item Brand Name" placeholder="Brand Name" name="license.brandName"
+                        wire:model="license.brandName" />
+                </div>
+                <div class="flex-auto">
 
-                <x-forms.input label="Item Model" placeholder="Model Name" name="license.modelName"
-                    wire:model="license.modelName" />
+                    <x-forms.input label="Item Model" placeholder="Model Name" name="license.modelName"
+                        wire:model="license.modelName" />
+                </div>
             </div>
-        </div>
-        <div class="flex flex-col md:flex-row p-2 md:space-x-1 md:space-y-0 space-y-1 w-full">
-            <div class="flex-auto">
+            <div class="flex flex-col md:flex-row p-2 md:space-x-1 md:space-y-0 space-y-1 w-full">
+                <div class="flex-auto">
 
-                <x-forms.input label="Asset Tag" placeholder="Asset Tag" name="license.assetTag"
-                    wire:model="license.assetTag" />
-            </div>
-            <div class="flex-auto">
+                    <x-forms.input label="Asset Tag" placeholder="Asset Tag" name="license.assetTag"
+                        wire:model="license.assetTag" />
+                </div>
+                <div class="flex-auto">
 
-                <x-forms.input label="Asset Serial" placeholder="Asset Serial" name="license.asset_serial"
-                    wire:model="license.asset_serial" />
+                    <x-forms.input label="Asset Serial" placeholder="Asset Serial" name="license.asset_serial"
+                        wire:model="license.asset_serial" />
+                </div>
             </div>
-        </div>
+        @endif
         <div class="flex flex-col md:flex-row p-2 md:space-x-1 md:space-y-0 space-y-1 w-full">
             <div class="flex-auto">
                 <x-forms.textarea label="Notes" placeholder="Notes" name="license.notes" wire:model='license.notes' />
