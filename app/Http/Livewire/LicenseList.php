@@ -11,6 +11,7 @@ use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 
 class LicenseList extends Component
 {
@@ -115,8 +116,12 @@ class LicenseList extends Component
             $license->next_renewal =  Carbon::parse($license->next_renewal)->format('j-M-y');
             $license->license_certification =  Str::ucfirst($license->license_certification);
             $license->license_type =  Str::ucfirst($license->license_type);
+            if (isset($license->department)) {
+                $license->dep =  $license->department->name;
+            }
+            $license->offsetUnset('department');
         }
-        $replacements = $licenses->toArray();
+        $replacements = Arr::except($licenses->toArray(), ['department']);
 
         $templateProcessor->cloneBlock('block_name', 0, true, false, $replacements);
 

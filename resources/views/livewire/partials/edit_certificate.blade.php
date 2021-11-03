@@ -46,7 +46,7 @@
                     wire:model="license.license_period" />
             </div>
         </div>
-        @if ($license->license_type == 'warranty')
+        @if ($license->license_type == 'warranty' or $license->license_type == 'license')
             <div class="flex flex-col md:flex-row p-2 md:space-x-1 md:space-y-0 space-y-1 w-full">
                 <div class="flex-auto">
 
