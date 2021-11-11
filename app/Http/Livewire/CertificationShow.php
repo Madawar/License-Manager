@@ -92,16 +92,5 @@ class CertificationShow extends Component
         $this->modalShow = false;
     }
 
-    public function download()
-    {
-        $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor(Storage::path('Template.docx'));
-        $licenses =  License::all();
-        $replacements = $licenses->toArray();
-
-        $templateProcessor->cloneBlock('block_name', 0, true, false, $replacements);
-
-        $path = 'public/' . Str::random(5) . '.docx';
-        $templateProcessor->saveAs(Storage::path($path));
-        return $path;
-    }
+   
 }
